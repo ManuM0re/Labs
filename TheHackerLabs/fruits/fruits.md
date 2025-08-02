@@ -28,7 +28,7 @@ tags:
 ---
 # Resolviendo la máquina Fruits
 
->En esta publicación, comparto cómo resolví la máquina **Fruits** de [TryHackMe](https://labs.thehackerslabs.com/machine/38).
+>En esta publicación, comparto cómo resolví la máquina **Fruits** de [The Hackers Labs](https://labs.thehackerslabs.com/machine/38).
 
 ---
 ## Enumeración
